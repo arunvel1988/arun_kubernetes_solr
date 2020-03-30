@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: arun123
+  labels:
+    role: myrole
+spec:
+  containers:
+    - name: arun123
+      image: arunvel1988/alpine_solr
+      ports:
+        - name: web
+          containerPort: 8983
+          protocol: TCP

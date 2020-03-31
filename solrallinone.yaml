@@ -5,7 +5,7 @@ metadata:
   labels:
     app: solrall
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: solrall
@@ -44,4 +44,20 @@ spec:
     - nodePort: 30007
       port: 8983
 
+
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: solr-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: solr.info
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: solrallservice
+          servicePort: 8983
 
